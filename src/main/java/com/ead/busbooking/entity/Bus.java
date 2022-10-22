@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 public class Bus {
     private String busId;
     private String busName;
-
+    private String busNo;
 }
