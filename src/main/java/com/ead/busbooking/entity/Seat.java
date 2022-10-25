@@ -3,22 +3,26 @@ package com.ead.busbooking.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
 import java.util.List;
 
 import static javax.persistence.FetchType.LAZY;
 
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Data
-public class Bus {
+public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String busNumber;
-    private Integer seatCapacity;
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "bus_id", referencedColumnName = "id")
+    private Bus bus;
 //    @OneToMany(fetch = LAZY)
-//    private List<Seat> seats;
+//    private List<Booking> bookings;
 }
