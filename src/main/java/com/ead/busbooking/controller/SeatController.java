@@ -1,9 +1,6 @@
 package com.ead.busbooking.controller;
-
-import com.ead.busbooking.entity.Bus;
 import com.ead.busbooking.entity.Seat;
 import com.ead.busbooking.service.BusService;
-import com.ead.busbooking.service.SeatService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

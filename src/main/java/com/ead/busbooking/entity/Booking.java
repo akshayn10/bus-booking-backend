@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 import java.time.Instant;
+import java.util.Date;
 
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
@@ -19,7 +20,7 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-    private Instant bookingTime;
+    private Date bookingTime;
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "seat_id", referencedColumnName = "id")
     private Seat seat;

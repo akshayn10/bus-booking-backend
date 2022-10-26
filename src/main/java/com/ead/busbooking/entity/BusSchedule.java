@@ -5,11 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.sql.Timestamp;
-import java.time.Instant;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
 
 import static javax.persistence.FetchType.LAZY;
 
@@ -21,13 +18,13 @@ public class BusSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "Date is mandatory")
-    private Instant date;
-    @NotBlank(message = "Departure time is mandatory")
-    private Instant departureTime;
-    @NotBlank(message = "Arrival time is mandatory")
-    private Instant arrivalTime;
-    @NotBlank(message = "ticket price mandatory")
+    @NotNull(message = "Date is mandatory")
+    private Date date;
+    @NotNull(message = "Departure time is mandatory")
+    private Date departureTime;
+    @NotNull(message = "Arrival time is mandatory")
+    private Date arrivalTime;
+    @NotNull(message = "ticket price mandatory")
     private Double ticketPrice;
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "bus_id", referencedColumnName = "id")

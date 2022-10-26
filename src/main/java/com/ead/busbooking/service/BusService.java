@@ -30,6 +30,7 @@ public class BusService {
         return bus;
     }
     public List<Seat> getAllSeats(){
+
         return seatRepository.findAll();
     }
 
