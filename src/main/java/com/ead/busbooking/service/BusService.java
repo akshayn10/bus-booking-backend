@@ -21,17 +21,14 @@ public class BusService {
     public Bus addBus(Bus bus){
 
         busRepository.save(bus);
-        for (int i = 0; i < bus.getSeatCapacity(); i++) {
-            Seat seat = new Seat();
-            seat.setBus(bus);
-            seatRepository.save(seat);
-
-        }
         return bus;
     }
     public List<Seat> getAllSeats(){
 
         return seatRepository.findAll();
+    }
+    public void deleteBus(Long id){
+        busRepository.deleteById(id);
     }
 
 }

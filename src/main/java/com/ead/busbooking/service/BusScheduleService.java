@@ -3,15 +3,14 @@ package com.ead.busbooking.service;
 import com.ead.busbooking.dto.BusScheduleRequestDto;
 import com.ead.busbooking.entity.Bus;
 import com.ead.busbooking.entity.BusSchedule;
+import com.ead.busbooking.entity.Seat;
 import com.ead.busbooking.repository.BusRepository;
 import com.ead.busbooking.repository.BusScheduleRepository;
+import com.ead.busbooking.repository.SeatRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -19,6 +18,7 @@ import java.util.Optional;
 public class BusScheduleService {
     private final BusScheduleRepository busScheduleRepository;
     private final DateConverterService dateConverterService;
+    private final SeatRepository seatRepository;
     private final BusRepository busRepository;
 
     public List<BusSchedule> getAllBusSchedules(){
@@ -32,6 +32,18 @@ public class BusScheduleService {
         busSchedule.setArrivalTime(dateConverterService.convertFromStringToDate(busScheduleRequestDto.getArrivalTime()));
         busSchedule.setDate(dateConverterService.convertFromStringToDate(busScheduleRequestDto.getDate()));
         busSchedule.setTicketPrice(busScheduleRequestDto.getTicketPrice());
-        return busScheduleRepository.save(busSchedule);
+        busScheduleRepository.save(busSchedule);
+
+        //Create Seats
+        int seatCount = bus.get().getSeatCapacity();
+
+        for (int i = 0; i < seatCount; i++) {
+            Seat seat = new Seat();
+            seat.setSeatNumber(i+1);
+            seat.setBusSchedule(busSchedule);
+
+            seatRepository.save(seat);
+        }
+        return busSchedule;
     }
 }

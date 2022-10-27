@@ -24,4 +24,9 @@ public class BusController {
     public ResponseEntity<Bus> addCustomer(@RequestBody Bus bus){
         return ResponseEntity.status(HttpStatus.CREATED).body(busService.addBus(bus));
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteCustomer(@PathVariable Long id){
+        busService.deleteBus(id);
+        return ResponseEntity.noContent().build();
+    }
 }

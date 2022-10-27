@@ -1,14 +1,9 @@
 package com.ead.busbooking.entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-
-import java.util.List;
 
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
@@ -22,10 +17,14 @@ public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Integer seatNumber;
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "bus_id", referencedColumnName = "id")
+    @JoinColumn(name = "schedule_id", referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Bus bus;
-//    @OneToMany(fetch = LAZY)
-//    private List<Booking> bookings;
+    private BusSchedule busSchedule;
+    @ManyToOne(fetch = EAGER)
+    @JoinColumn(name = "booking_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Booking booking;
+
 }

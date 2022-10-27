@@ -1,12 +1,10 @@
 package com.ead.busbooking.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-
-import java.time.Instant;
 import java.util.Date;
 
 import static javax.persistence.FetchType.LAZY;
@@ -22,12 +20,11 @@ public class Booking {
     private Long id;
     private Date bookingTime;
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "seat_id", referencedColumnName = "id")
-    private Seat seat;
-    @ManyToOne(fetch = LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "schedule_id", referencedColumnName = "id")
-    private BusSchedule busSchedule;
+//    @ManyToOne(fetch = LAZY)
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//    @JoinColumn(name = "schedule_id", referencedColumnName = "id")
+//    private BusSchedule busSchedule;
 }

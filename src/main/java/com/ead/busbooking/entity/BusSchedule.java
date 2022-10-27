@@ -1,5 +1,6 @@
 package com.ead.busbooking.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,8 @@ public class BusSchedule {
     private Long id;
     @NotNull(message = "Date is mandatory")
     private Date date;
+    private String from;
+    private String to;
     @NotNull(message = "Departure time is mandatory")
     private Date departureTime;
     @NotNull(message = "Arrival time is mandatory")
@@ -27,6 +30,7 @@ public class BusSchedule {
     @NotNull(message = "ticket price mandatory")
     private Double ticketPrice;
     @ManyToOne(fetch = LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "bus_id", referencedColumnName = "id")
     private Bus bus;
 //    @OneToMany(fetch = LAZY)

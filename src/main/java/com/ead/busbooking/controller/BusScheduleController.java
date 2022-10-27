@@ -23,7 +23,6 @@ public class BusScheduleController {
     }
     @PostMapping
     public ResponseEntity<BusSchedule> addBusSchedule(@RequestBody BusScheduleRequestDto busScheduleRequestDto){
-        System.out.println(busScheduleRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(busScheduleService.addBusSchedule(busScheduleRequestDto));
     }
 }
