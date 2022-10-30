@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/api/admin")
 @AllArgsConstructor
+@CrossOrigin(origins = "*")
 public class AdminController {
     private final AdminService adminService;
 

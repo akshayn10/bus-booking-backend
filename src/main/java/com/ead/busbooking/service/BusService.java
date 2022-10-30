@@ -1,5 +1,6 @@
 package com.ead.busbooking.service;
 
+import com.ead.busbooking.dto.BusDto;
 import com.ead.busbooking.entity.Bus;
 import com.ead.busbooking.entity.Seat;
 import com.ead.busbooking.repository.BusRepository;
@@ -8,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -29,6 +31,19 @@ public class BusService {
     }
     public void deleteBus(Long id){
         busRepository.deleteById(id);
+    }
+    public List<BusDto> getAllBusesDto(){
+        return busToBusDto(busRepository.findAll());
+    }
+
+    private List<BusDto> busToBusDto(List<Bus> buses){
+        return buses.stream().map(b -> {
+            BusDto busDto = new BusDto();
+            busDto.setId(b.getId());
+            busDto.setBusNumber(b.getBusNumber());
+
+            return busDto;
+        }).collect(Collectors.toList());
     }
 
 }
