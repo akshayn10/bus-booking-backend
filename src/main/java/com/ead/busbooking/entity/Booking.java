@@ -23,8 +23,5 @@ public class Booking {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
-//    @ManyToOne(fetch = LAZY)
-//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-//    @JoinColumn(name = "schedule_id", referencedColumnName = "id")
-//    private BusSchedule busSchedule;
+
 }

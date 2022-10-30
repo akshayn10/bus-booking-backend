@@ -30,7 +30,6 @@ public class BusScheduleService {
         busSchedule.setBus(bus.get());
         busSchedule.setDepartureTime(dateConverterService.convertFromStringToDate(busScheduleRequestDto.getDepartureTime()));
         busSchedule.setArrivalTime(dateConverterService.convertFromStringToDate(busScheduleRequestDto.getArrivalTime()));
-        busSchedule.setDate(dateConverterService.convertFromStringToDate(busScheduleRequestDto.getDate()));
         busSchedule.setTicketPrice(busScheduleRequestDto.getTicketPrice());
         busScheduleRepository.save(busSchedule);
 

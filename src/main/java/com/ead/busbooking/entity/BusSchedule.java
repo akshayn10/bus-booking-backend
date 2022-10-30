@@ -19,10 +19,8 @@ public class BusSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "Date is mandatory")
-    private Date date;
-    private String from;
-    private String to;
+    private String startLocation;
+    private String destination;
     @NotNull(message = "Departure time is mandatory")
     private Date departureTime;
     @NotNull(message = "Arrival time is mandatory")

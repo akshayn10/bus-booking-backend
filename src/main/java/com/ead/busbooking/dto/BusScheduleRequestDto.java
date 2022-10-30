@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BusScheduleRequestDto {
     private String date;
+    private String startLocation;
+    private String destination;
     private String departureTime;
     private String arrivalTime;
     private Double ticketPrice;

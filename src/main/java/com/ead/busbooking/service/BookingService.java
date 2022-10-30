@@ -35,7 +35,6 @@ public class BookingService {
 
         //Don't use optional
         dto.getSeats().stream().map(s -> seatRepository.findById(s).orElse(null)).forEach(seat -> {
-            System.out.println(seat);
             seat.setBooking(booking);
             seatRepository.save(seat);
         });

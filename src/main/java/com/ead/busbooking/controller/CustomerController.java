@@ -24,16 +24,13 @@ public class CustomerController {
     public ResponseEntity<List<Customer>> getAllCustomers(){
         return ResponseEntity.ok(customerService.getAllCustomers());
     }
-
     @PostMapping
     public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) throws Exception {
         return ResponseEntity.status(HttpStatus.CREATED).body(customerService.addCustomer(customer));
     }
-
     @PostMapping("/login")
     public ResponseEntity<CustomerAuthResponse> loginCustomer(HttpServletResponse response, @RequestBody CustomerLoginDto dto) {
         CustomerAuthResponse customerAuthResponse = customerService.isCustomer(dto);
-
         if(customerAuthResponse.getIsAuthenticated()) {
             response.addCookie(new Cookie("customerId", customerAuthResponse.getCustomerId().toString()));
             response.addCookie(new Cookie("customerName", customerAuthResponse.getCustomerName()));
@@ -44,7 +41,9 @@ public class CustomerController {
     }
     @PostMapping("/logout")
     public ResponseEntity<String> logoutCustomer(HttpServletResponse response) {
-        response.addCookie(null);
+        response.addCookie(new Cookie("customerId", null));
+        response.addCookie(new Cookie("customerName", null));
+        response.addCookie(new Cookie("isAuthenticated", null));
         return ResponseEntity.ok("Logout Successful");
     }
 }

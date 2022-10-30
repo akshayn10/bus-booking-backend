@@ -1,7 +1,7 @@
 package com.ead.busbooking.service;
 
-import com.ead.busbooking.dto.AvailableSeatsDto;
 import com.ead.busbooking.dto.CustomerAuthResponse;
+import com.ead.busbooking.dto.SeatsDto;
 import com.ead.busbooking.entity.Customer;
 import com.ead.busbooking.entity.Seat;
 import com.ead.busbooking.repository.SeatRepository;
@@ -16,19 +16,18 @@ import java.util.stream.Collectors;
 public class SeatService {
     private final SeatRepository seatRepository;
 
-    public List<AvailableSeatsDto> getAvailableSeatsForSchedule(Long id){
+    public List<SeatsDto> getAvailableSeatsForSchedule(Long id){
 
-        return mapToAvailableSeatsDto(seatRepository.findAllByBusScheduleAndBookingIsNull(id));
+        return mapToSeatsDto(seatRepository.findAllByBusScheduleId(id));
     }
 
-    private List<AvailableSeatsDto> mapToAvailableSeatsDto(List<Seat> seats){
-        System.out.println(seats);
+    private List<SeatsDto> mapToSeatsDto(List<Seat> seats){
         return seats.stream().map(s -> {
-            AvailableSeatsDto availableSeatsDto = new AvailableSeatsDto();
-            availableSeatsDto.setId(s.getId());
-            availableSeatsDto.setSeatNumber(s.getSeatNumber());
-            return availableSeatsDto;
+            SeatsDto seatsDto = new SeatsDto();
+            seatsDto.setId(s.getId());
+            seatsDto.setSeatNumber(s.getSeatNumber());
+            seatsDto.setIsAvailable(s.getBooking() == null);
+            return seatsDto;
         }).collect(Collectors.toList());
     }
-
 }

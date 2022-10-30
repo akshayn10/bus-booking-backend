@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface SeatRepository extends JpaRepository<Seat, Long> {
 
 
-    @Query("select s from Seat s where s.busSchedule.id = :id and s.booking is null")
-    List<Seat> findAllByBusScheduleAndBookingIsNull(Long id);
+//    @Query("select s from Seat s where s.busSchedule.id = :id and s.booking is null")
+    List<Seat> findAllByBusScheduleId(Long id);
 }

@@ -20,12 +20,11 @@ public class AdminController {
     public ResponseEntity<String> setCookie(HttpServletResponse response, @RequestBody AdminLoginRequestDto adminLoginRequestDto) {
         if(adminService.isAdmin(adminLoginRequestDto)) {
             Cookie cookie = new Cookie("admin", "true");
-            Cookie cookie1 = new Cookie("admsvin", "trusdve");
+            Cookie cookie1 = new Cookie("isAuthenticated", "true");
             response.addCookie(cookie);
             response.addCookie(cookie1);
             return ResponseEntity.status(200).body("Login Successful");
         }
         return ResponseEntity.status(401).body("Login Failed");
     }
-
 }
