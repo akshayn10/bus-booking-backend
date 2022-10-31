@@ -35,6 +35,14 @@ public class BusService {
         return busToBusDto(busRepository.findAll());
     }
 
+    public Bus updateBus(Long id, Bus bus){
+        Bus bus1 = busRepository.findById(id).orElseThrow();
+        bus1.setBusNumber(bus.getBusNumber());
+        bus1.setSeatCapacity(bus.getSeatCapacity());
+        busRepository.save(bus1);
+        return bus1;
+    }
+
     private List<BusDto> busToBusDto(List<Bus> buses){
         return buses.stream().map(b -> {
             BusDto busDto = new BusDto();
