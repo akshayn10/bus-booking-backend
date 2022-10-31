@@ -26,8 +26,11 @@ public class BusScheduleService {
     private final SeatRepository seatRepository;
     private final BusRepository busRepository;
 
-    public List<BusSchedule> getAllBusSchedules(){
-        return busScheduleRepository.findAll();
+    public List<BusScheduleDto> getAllBusSchedules(){
+
+        return busScheduleToBusScheduleDto(
+                busScheduleRepository.findAllByOrderByDepartureTimeDesc().stream().filter(s->s.getArrivalTime().after(new Date())
+        ).collect(Collectors.toList()));
     }
     public BusSchedule addBusSchedule(BusScheduleRequestDto busScheduleRequestDto) throws ParseException {
         BusSchedule busSchedule = new BusSchedule();

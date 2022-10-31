@@ -23,8 +23,8 @@ public class BusScheduleController {
     private final BusScheduleService busScheduleService;
 
     @GetMapping
-    @AuthorizeCustomer
-    public ResponseEntity<List<BusSchedule>> getAllBusSchedules(){
+//    @AuthorizeCustomer
+    public ResponseEntity<List<BusScheduleDto>> getAllBusSchedules(){
         return ResponseEntity.ok(busScheduleService.getAllBusSchedules());
     }
     @PostMapping
