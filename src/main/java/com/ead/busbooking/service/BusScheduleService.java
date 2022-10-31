@@ -76,7 +76,7 @@ public class BusScheduleService {
                 busScheduleRepository.findAllByStartLocationAndDestinationAndDepartureTime(
                         scheduleSearchRequestDto.getStartLocation(),
                         scheduleSearchRequestDto.getDestination(),
-                        date).stream().filter(b -> dateConverterService.convertFromDateToString(b.getDepartureTime()).equals(dateConverterService.convertFromDateToString(date))).collect(Collectors.toList());
+                        new Date()).stream().filter(b -> dateConverterService.convertFromDateToString(b.getDepartureTime()).equals(dateConverterService.convertFromDateToString(date))).collect(Collectors.toList());
         return busScheduleToBusScheduleDto(busSchedules);
 
     }
