@@ -2,6 +2,7 @@ package com.ead.busbooking.service;
 
 import com.ead.busbooking.dto.BusScheduleDto;
 import com.ead.busbooking.dto.BusScheduleRequestDto;
+import com.ead.busbooking.dto.ScheduleSearchRequestDto;
 import com.ead.busbooking.entity.Bus;
 import com.ead.busbooking.entity.BusSchedule;
 import com.ead.busbooking.entity.Seat;
@@ -12,6 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -58,10 +60,24 @@ public class BusScheduleService {
         return busSchedules.stream().map(b -> {
             BusScheduleDto busScheduleDto = new BusScheduleDto();
             busScheduleDto.setId(b.getId());
+            busScheduleDto.setStartLocation(b.getStartLocation());
+            busScheduleDto.setDestination(b.getDestination());
             busScheduleDto.setDepartureTime(b.getDepartureTime().toString());
             busScheduleDto.setArrivalTime(b.getArrivalTime().toString());
             busScheduleDto.setTicketPrice(b.getTicketPrice());
             return busScheduleDto;
         }).collect(Collectors.toList());
+    }
+
+    public List<BusScheduleDto> searchBusSchedule(ScheduleSearchRequestDto scheduleSearchRequestDto) throws ParseException {
+        Date date = dateConverterService.convertFromStringToDate(scheduleSearchRequestDto.getDate());
+        System.out.println(date);
+        List<BusSchedule> busSchedules =
+                busScheduleRepository.findAllByStartLocationAndDestinationAndDepartureTime(
+                        scheduleSearchRequestDto.getStartLocation(),
+                        scheduleSearchRequestDto.getDestination(),
+                        date).stream().filter(b -> dateConverterService.convertFromDateToString(b.getDepartureTime()).equals(dateConverterService.convertFromDateToString(date))).collect(Collectors.toList());
+        return busScheduleToBusScheduleDto(busSchedules);
+
     }
 }

@@ -17,4 +17,8 @@ public class DateConverterService {
         DateFormat format = new SimpleDateFormat( "E MMM dd yyyy HH:mm:ss 'GMT'z", Locale.ENGLISH);
         return format.parse(date);
     }
+    public String convertFromDateToString(Date date){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(date);
+    }
 }
