@@ -12,5 +12,4 @@ public class BusBookingApplication {
         SpringApplication.run(BusBookingApplication.class, args);
         System.out.println("Hello Bus Booking!");
     }
-
 }

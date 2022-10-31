@@ -21,4 +21,8 @@ public class DateConverterService {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(date);
     }
+    public String convertFromDateToStringWithTime(Date date){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm aa");
+        return dateFormat.format(date);
+    }
 }

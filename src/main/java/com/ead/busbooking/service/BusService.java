@@ -21,7 +21,6 @@ public class BusService {
         return busRepository.findAll();
     }
     public Bus addBus(Bus bus){
-
         busRepository.save(bus);
         return bus;
     }

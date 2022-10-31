@@ -62,8 +62,8 @@ public class BusScheduleService {
             busScheduleDto.setId(b.getId());
             busScheduleDto.setStartLocation(b.getStartLocation());
             busScheduleDto.setDestination(b.getDestination());
-            busScheduleDto.setDepartureTime(b.getDepartureTime().toString());
-            busScheduleDto.setArrivalTime(b.getArrivalTime().toString());
+            busScheduleDto.setDepartureTime(dateConverterService.convertFromDateToStringWithTime(b.getDepartureTime()));
+            busScheduleDto.setArrivalTime(dateConverterService.convertFromDateToStringWithTime(b.getArrivalTime()));
             busScheduleDto.setTicketPrice(b.getTicketPrice());
             return busScheduleDto;
         }).collect(Collectors.toList());
@@ -79,5 +79,8 @@ public class BusScheduleService {
                         new Date()).stream().filter(b -> dateConverterService.convertFromDateToString(b.getDepartureTime()).equals(dateConverterService.convertFromDateToString(date))).collect(Collectors.toList());
         return busScheduleToBusScheduleDto(busSchedules);
 
+    }
+    public void deleteBusSchedule(Long id){
+        busScheduleRepository.deleteById(id);
     }
 }

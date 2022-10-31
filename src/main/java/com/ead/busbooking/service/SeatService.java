@@ -1,8 +1,5 @@
 package com.ead.busbooking.service;
-
-import com.ead.busbooking.dto.CustomerAuthResponse;
 import com.ead.busbooking.dto.SeatsDto;
-import com.ead.busbooking.entity.Customer;
 import com.ead.busbooking.entity.Seat;
 import com.ead.busbooking.repository.SeatRepository;
 import lombok.AllArgsConstructor;

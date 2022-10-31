@@ -37,4 +37,9 @@ public class BusScheduleController {
     public ResponseEntity<List<BusScheduleDto>> searchBusSchedule(@RequestBody ScheduleSearchRequestDto scheduleSearchRequestDto) throws ParseException {
         return ResponseEntity.ok(busScheduleService.searchBusSchedule(scheduleSearchRequestDto));
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteBusSchedule(@PathVariable Long id){
+        busScheduleService.deleteBusSchedule(id);
+        return ResponseEntity.noContent().build();
+    }
 }
