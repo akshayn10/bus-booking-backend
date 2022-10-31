@@ -1,5 +1,6 @@
 package com.ead.busbooking.controller;
 
+import com.ead.busbooking.annotation.AuthorizeCustomer;
 import com.ead.busbooking.dto.BusScheduleDto;
 import com.ead.busbooking.dto.BusScheduleRequestDto;
 import com.ead.busbooking.dto.ScheduleSearchRequestDto;
@@ -22,6 +23,7 @@ public class BusScheduleController {
     private final BusScheduleService busScheduleService;
 
     @GetMapping
+    @AuthorizeCustomer
     public ResponseEntity<List<BusSchedule>> getAllBusSchedules(){
         return ResponseEntity.ok(busScheduleService.getAllBusSchedules());
     }
