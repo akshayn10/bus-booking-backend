@@ -2,6 +2,7 @@ package com.ead.busbooking.controller;
 
 
 import com.ead.busbooking.dto.CustomerAuthResponse;
+import com.ead.busbooking.dto.CustomerDto;
 import com.ead.busbooking.dto.CustomerLoginDto;
 import com.ead.busbooking.entity.Customer;
 import com.ead.busbooking.service.CustomerService;
@@ -26,25 +27,19 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.getAllCustomers());
     }
     @PostMapping
-    public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) throws Exception {
+    public ResponseEntity<CustomerDto> addCustomer(@RequestBody Customer customer) throws Exception {
         return ResponseEntity.status(HttpStatus.CREATED).body(customerService.addCustomer(customer));
     }
     @PostMapping("/login")
-    public ResponseEntity<CustomerAuthResponse> loginCustomer(HttpServletResponse response, @RequestBody CustomerLoginDto dto) {
-        CustomerAuthResponse customerAuthResponse = customerService.isCustomer(dto);
+    public ResponseEntity<CustomerAuthResponse> loginCustomer(@RequestBody CustomerLoginDto dto) {
+        CustomerAuthResponse customerAuthResponse = customerService.loginCustomer(dto);
         if(customerAuthResponse.getIsAuthenticated()) {
-            response.addCookie(new Cookie("customerId", customerAuthResponse.getCustomerId().toString()));
-            response.addCookie(new Cookie("customerName", customerAuthResponse.getCustomerName()));
-            response.addCookie(new Cookie("isAuthenticated", customerAuthResponse.getIsAuthenticated().toString()));
             return ResponseEntity.status(200).body(customerAuthResponse);
         }
         return ResponseEntity.status(401).body(customerAuthResponse);
     }
     @PostMapping("/logout")
     public ResponseEntity<String> logoutCustomer(HttpServletResponse response) {
-        response.addCookie(new Cookie("customerId", null));
-        response.addCookie(new Cookie("customerName", null));
-        response.addCookie(new Cookie("isAuthenticated", null));
         return ResponseEntity.ok("Logout Successful");
     }
 }

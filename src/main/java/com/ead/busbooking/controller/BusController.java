@@ -2,7 +2,6 @@ package com.ead.busbooking.controller;
 
 import com.ead.busbooking.dto.BusDto;
 import com.ead.busbooking.entity.Bus;
-import com.ead.busbooking.entity.Customer;
 import com.ead.busbooking.service.BusService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

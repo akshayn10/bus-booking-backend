@@ -23,6 +23,8 @@ public class Customer {
     private String name;
     @NotBlank(message = "Customer mobile number is mandatory")
     private String mobileNumber;
+    @NotBlank(message = "Password is mandatory")
+    private String password;
 //    @OneToMany(fetch = LAZY)
 //    private List<Booking> bookings;
 }
