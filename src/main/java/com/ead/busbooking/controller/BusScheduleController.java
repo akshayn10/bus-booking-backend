@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -24,7 +25,7 @@ public class BusScheduleController {
         return ResponseEntity.ok(busScheduleService.getAllBusSchedules());
     }
     @PostMapping
-    public ResponseEntity<BusSchedule> addBusSchedule(@RequestBody BusScheduleRequestDto busScheduleRequestDto){
+    public ResponseEntity<BusSchedule> addBusSchedule(@RequestBody BusScheduleRequestDto busScheduleRequestDto) throws ParseException {
         return ResponseEntity.status(HttpStatus.CREATED).body(busScheduleService.addBusSchedule(busScheduleRequestDto));
     }
     @GetMapping("/bus/{id}")

@@ -11,6 +11,7 @@ import com.ead.busbooking.repository.SeatRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,10 +27,12 @@ public class BusScheduleService {
     public List<BusSchedule> getAllBusSchedules(){
         return busScheduleRepository.findAll();
     }
-    public BusSchedule addBusSchedule(BusScheduleRequestDto busScheduleRequestDto){
+    public BusSchedule addBusSchedule(BusScheduleRequestDto busScheduleRequestDto) throws ParseException {
         BusSchedule busSchedule = new BusSchedule();
         Optional<Bus> bus = busRepository.findById(busScheduleRequestDto.getBusId());
         busSchedule.setBus(bus.get());
+        busSchedule.setStartLocation(busScheduleRequestDto.getStartLocation());
+        busSchedule.setDestination(busScheduleRequestDto.getDestination());
         busSchedule.setDepartureTime(dateConverterService.convertFromStringToDate(busScheduleRequestDto.getDepartureTime()));
         busSchedule.setArrivalTime(dateConverterService.convertFromStringToDate(busScheduleRequestDto.getArrivalTime()));
         busSchedule.setTicketPrice(busScheduleRequestDto.getTicketPrice());
