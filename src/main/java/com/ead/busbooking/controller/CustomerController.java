@@ -39,8 +39,4 @@ public class CustomerController {
         }
         return ResponseEntity.status(401).body(customerAuthResponse);
     }
-    @PostMapping("/logout")
-    public ResponseEntity<String> logoutCustomer(HttpServletResponse response) {
-        return ResponseEntity.ok("Logout Successful");
-    }
 }
