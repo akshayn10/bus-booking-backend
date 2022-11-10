@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Service
 public class BusService {
+
     private final BusRepository busRepository;
     private final SeatRepository seatRepository;
 
@@ -25,7 +26,6 @@ public class BusService {
         return bus;
     }
     public List<Seat> getAllSeats(){
-
         return seatRepository.findAll();
     }
     public void deleteBus(Long id){
@@ -48,7 +48,6 @@ public class BusService {
             BusDto busDto = new BusDto();
             busDto.setId(b.getId());
             busDto.setBusNumber(b.getBusNumber());
-
             return busDto;
         }).collect(Collectors.toList());
     }

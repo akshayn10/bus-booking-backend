@@ -11,5 +11,5 @@ public interface BusScheduleRepository extends JpaRepository<BusSchedule, Long> 
     List<BusSchedule> findAllByBusId(Long id);
     List<BusSchedule> findAllByOrderByDepartureTimeDesc();
     @Query("select b from BusSchedule b where b.startLocation = ?1 and b.destination = ?2 and b.departureTime > ?3")
-    List<BusSchedule> findAllByStartLocationAndDestinationAndDepartureTime(String startLocation, String destination, Date departureTime);
+    List<BusSchedule> findAllByStartLocationAndDestinationAndDepartureTime(String startLocation, String destination, Date currentTime);
 }

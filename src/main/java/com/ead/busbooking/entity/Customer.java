@@ -7,10 +7,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-import java.util.List;
-
-import static javax.persistence.FetchType.LAZY;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,6 +21,4 @@ public class Customer {
     private String mobileNumber;
     @NotBlank(message = "Password is mandatory")
     private String password;
-//    @OneToMany(fetch = LAZY)
-//    private List<Booking> bookings;
 }

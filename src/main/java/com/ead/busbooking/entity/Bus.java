@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
-import java.util.List;
 
-import static javax.persistence.FetchType.LAZY;
 
 
 @AllArgsConstructor
@@ -19,6 +17,4 @@ public class Bus {
     private Long id;
     private String busNumber;
     private Integer seatCapacity;
-//    @OneToMany(fetch = LAZY)
-//    private List<Seat> seats;
 }

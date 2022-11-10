@@ -36,8 +36,6 @@ public class BookingService {
         booking.setCustomer(customerRepository.findById(dto.getCustomerId()).get());
         bookingRepository.save(booking);
 
-        System.out.println(booking);
-
         //Don't use optional
         List<Integer> seatNumbers= new ArrayList<>();
         dto.getSeats().stream().map(s -> seatRepository.findById(s).orElse(null)).forEach(seat -> {
@@ -50,13 +48,11 @@ public class BookingService {
 
         Optional<Seat> seat= seatRepository.findById(dto.getSeats().get(0));
 
-        System.out.println(seat);
         BusSchedule busSchedule = busScheduleRepository.findById(seat.get().getBusSchedule().getId()).get();
         Bus bus = busSchedule.getBus();
         bookingResponseDto.setBusNumber(bus.getBusNumber());
         bookingResponseDto.setCustomerName(booking.getCustomer().getName());
         bookingResponseDto.setId(booking.getId());
-        System.out.println(booking);
         return bookingResponseDto;
     }
 }

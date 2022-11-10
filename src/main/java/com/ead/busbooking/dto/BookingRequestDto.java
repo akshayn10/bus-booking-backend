@@ -11,6 +11,5 @@ import java.util.List;
 @NoArgsConstructor
 public class BookingRequestDto {
     private Long customerId;
-    private Long scheduleId;
     private List<Long> seats;
 }

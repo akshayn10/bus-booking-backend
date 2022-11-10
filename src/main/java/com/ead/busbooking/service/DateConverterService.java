@@ -5,17 +5,23 @@ import org.springframework.stereotype.Service;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 
 @Service
 public class DateConverterService {
 
-    public Date convertFromStringToDate(String date) throws ParseException {
+    public Date convertFromStringToDate(String date) {
         DateFormat format = new SimpleDateFormat( "E MMM dd yyyy HH:mm:ss 'GMT'z", Locale.ENGLISH);
-        return format.parse(date);
+        Date date1 = new Date();
+        try{
+            date1 = format.parse(date);
+        }
+        catch(ParseException p){
+            System.out.println(p.getMessage());
+        }
+        return date1;
+
     }
     public String convertFromDateToString(Date date){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

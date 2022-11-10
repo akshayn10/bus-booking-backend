@@ -31,6 +31,4 @@ public class BusSchedule {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "bus_id", referencedColumnName = "id")
     private Bus bus;
-//    @OneToMany(fetch = LAZY)
-//    private List<Booking> bookings;
 }

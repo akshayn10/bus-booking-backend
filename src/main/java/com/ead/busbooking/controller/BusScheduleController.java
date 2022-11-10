@@ -1,10 +1,8 @@
 package com.ead.busbooking.controller;
 
-import com.ead.busbooking.annotation.AuthorizeCustomer;
 import com.ead.busbooking.dto.BusScheduleDto;
 import com.ead.busbooking.dto.BusScheduleRequestDto;
 import com.ead.busbooking.dto.ScheduleSearchRequestDto;
-import com.ead.busbooking.entity.Bus;
 import com.ead.busbooking.entity.BusSchedule;
 import com.ead.busbooking.service.BusScheduleService;
 import lombok.AllArgsConstructor;
@@ -12,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -28,7 +25,7 @@ public class BusScheduleController {
         return ResponseEntity.ok(busScheduleService.getAllBusSchedules());
     }
     @PostMapping
-    public ResponseEntity<BusSchedule> addBusSchedule(@RequestBody BusScheduleRequestDto busScheduleRequestDto) throws ParseException {
+    public ResponseEntity<BusSchedule> addBusSchedule(@RequestBody BusScheduleRequestDto busScheduleRequestDto)  {
         return ResponseEntity.status(HttpStatus.CREATED).body(busScheduleService.addBusSchedule(busScheduleRequestDto));
     }
     @GetMapping("/bus/{id}")
@@ -36,7 +33,7 @@ public class BusScheduleController {
         return ResponseEntity.ok(busScheduleService.getBusScheduleByBusId(id));
     }
     @PostMapping("/search")
-    public ResponseEntity<List<BusScheduleDto>> searchBusSchedule(@RequestBody ScheduleSearchRequestDto scheduleSearchRequestDto) throws ParseException {
+    public ResponseEntity<List<BusScheduleDto>> searchBusSchedule(@RequestBody ScheduleSearchRequestDto scheduleSearchRequestDto) {
         return ResponseEntity.ok(busScheduleService.searchBusSchedule(scheduleSearchRequestDto));
     }
     @DeleteMapping("/{id}")
