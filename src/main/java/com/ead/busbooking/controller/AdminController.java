@@ -15,7 +15,7 @@ public class AdminController {
     private final AdminService adminService;
 
     @PostMapping
-    public ResponseEntity<String> setCookie(@RequestBody AdminLoginRequestDto adminLoginRequestDto) {
+    public ResponseEntity<String> adminLogin(@RequestBody AdminLoginRequestDto adminLoginRequestDto) {
         if(adminService.isAdmin(adminLoginRequestDto)) {
 
             return ResponseEntity.status(200).body("Login Successful");
